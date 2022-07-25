@@ -63,17 +63,18 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom(...arr) {
-  const reversArr = arr.reverse();
-  if (arr.length === 3) {
-    return ${reversArr[3]}*x**${reversArr[3]} + ${reversArr[1]}*x + ${reversArr[0]};
-  }
-  if (arr.length === 2) {
-    return `y = ${reversArr[1]}*x + ${reversArr[0]}`;
-  }
-  if (arr.length === 1) {
-    return `y = ${reversArr[0]}`;
-  }
-  return null;
+  return (x) => {
+    if (arr.length === 3) {
+      return arr[0] * x ** 2 + arr[1] * x + arr[2];
+    }
+    if (arr.length === 2) {
+      return arr[0] * x + arr[1];
+    }
+    if (arr.length === 1) {
+      return arr[0];
+    }
+    return null;
+  };
 }
 
 
@@ -91,8 +92,16 @@ function getPolynom(...arr) {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(fn) {
+  const cache = new Map();
+  return (x) => {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    const res = fn(x);
+    cache.set(x, res);
+    return res;
+  };
 }
 
 
