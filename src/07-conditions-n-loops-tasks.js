@@ -462,8 +462,8 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(m1, m2) {
-  const multNatrix = [];
+function getMatrixProduct(/* m1, m2 */) {
+  throw new Error('Not implemented');
 }
 
 
